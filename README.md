@@ -1,8 +1,7 @@
 # vk_to_telegram_bot
-
 Бот для пересылки сообщений из VK в Telegram. Форк от https://github.com/Nikovit/bot_vk_to_telegram
 
-Тут фото в постах группируются, т.к. все подписываются одним текстом.
+Тут фото в постах группируются, т.к. все подписываются одним текстом.  
 Как это работает можно подсмотреть в @panda_art_cafe
 
 Заполняем settings.ini своими значениями
@@ -23,16 +22,14 @@
 
 Нам понадобятся библиотеки:
 
-pip install vk_api
-
+pip install vk_api  
 pip install pyTelegramBotAPI
 
 configparser и logging из стандартной библиотеки Python, и конечно сам Python, на момент написания статьи была версия 3.6.2
 
 Запуск в кроне каждые 30 минут:
 
-crontab -e
-
+crontab -e  
 0,30 * * * * python3 /opt/bot/vk_to_telegramm.py
 
 Не забываем в кроне после команды нажать Enter, нужна смена строки.
