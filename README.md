@@ -1,6 +1,6 @@
 # vk_to_telegram_bot
 
-Бот для пересылки сообщений из VK в Telegram. Форк от https://github.com/Nikovit/bot_vk_to_telegram
+Бот для пересылки сообщений из VK в Telegram. Форк от https://github.com/Nikovit/bot_vk_to_telegram 
 Здесь фото в постах группируется, т.к. все фото подписываются одним текстом.
 Как это работает можно подсмотреть в @panda_art_cafe
 
