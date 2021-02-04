@@ -30,6 +30,7 @@ pip install pyTelegramBotAPI
 configparser и logging из стандартной библиотеки Python, и конечно сам Python, на момент написания статьи была версия 3.6.2
 
 Запуск в кроне каждые 30 минут:
+
 crontab -e
 0,30 * * * * python3 /opt/bot/vk_to_telegramm.py
 
