@@ -107,6 +107,16 @@ def check_posts_vk():
                         if key != 'type' and 'url' in value:
                             attachments.append(value['url'])
 
+        if len(images) > 0:
+            caption = post['text']
+            image_urls = list(map(lambda img: max(
+                img["sizes"], key=lambda size: size["type"])["url"], images))
+            #caption = text
+            print(image_urls, caption)
+            bot.send_media_group(CHANNEL, map(
+                lambda url: InputMediaPhoto(url, caption), image_urls))
+
+
         if INCLUDE_LINK:
             post_url = "https://vk.com/" + DOMAIN + "?w=wall" + \
                 str(post['owner_id']) + '_' + str(post['id'])
@@ -114,12 +124,6 @@ def check_posts_vk():
         text = '\n'.join([text] + links)
         send_posts_text(text)
 
-        if len(images) > 0:
-            image_urls = list(map(lambda img: max(
-                img["sizes"], key=lambda size: size["type"])["url"], images))
-            print(image_urls)
-            bot.send_media_group(CHANNEL, map(
-                lambda url: InputMediaPhoto(url), image_urls))
 
         # Проверяем есть ли репост другой записи
         if 'copy_history' in post:
@@ -160,6 +164,13 @@ def check_posts_vk():
 
 # Отправляем посты в телеграмм
 
+# Изображения
+def send_posts_img(img):
+    global bot
+
+    # Находим картинку с максимальным качеством
+    url = max(img["sizes"], key=lambda size: size["type"])["url"]
+    bot.send_photo(CHANNEL, url)
 
 # Текст
 def send_posts_text(text):
@@ -170,9 +181,10 @@ def send_posts_text(text):
     if text == '':
         print('no text')
     else:
-        # В телеграмме есть ограничения на длину одного сообщения в 4091 символ, разбиваем длинные сообщения на части
-        for msg in split(text):
-            bot.send_message(CHANNEL, msg, disable_web_page_preview=not PREVIEW_LINK)
+        print('ok text')
+# В телеграмме есть ограничения на длину одного сообщения в 4091 символ, разбиваем длинные сообщения на части
+# for msg in split(text):
+# bot.send_message(CHANNEL, msg, disable_web_page_preview=not PREVIEW_LINK)
 
 
 def split(text):
@@ -187,15 +199,6 @@ def split(text):
         return [good_part] + split(bad_part)
     else:
         return [text]
-
-
-# Изображения
-def send_posts_img(img):
-    global bot
-    
-    # Находим картинку с максимальным качеством
-    url = max(img["sizes"], key=lambda size: size["type"])["url"]
-    bot.send_photo(CHANNEL, url)
 
 
 if __name__ == '__main__':
