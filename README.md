@@ -20,8 +20,8 @@
 
 
 Библиотеки:  
-pip install vk_api  
-pip install pyTelegramBotAPI  
+`pip install vk_api`  
+`pip install pyTelegramBotAPI`  
 
 configparser и logging из стандартной библиотеки Python, и конечно сам Python, на момент написания статьи была версия 3.6.2
 
